@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1d2671, #c33764);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+}
+
+header p {
+    opacity: 0.9;
+}
+
+#pokemon-container {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    padding: 40px;
+}
+
+.loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+/* CARD */
+.card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 18px;
+    padding: 25px 20px;
+    text-align: center;
+    backdrop-filter: blur(12px);
+    cursor: pointer;
+
+    transform-style: preserve-3d;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Aura */
+.card::before {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: 20px;
+    background: linear-gradient(
+        45deg,
+        #ffd700,
+        #ff6ec4,
+        #7f7fff,
+        #00ffe7
+    );
+    opacity: 0;
+    filter: blur(14px);
+    z-index: -1;
+    transition: opacity 0.4s ease;
+}
+
+.card:hover::before {
+    opacity: 1;
+    animation: aura 2s infinite;
+}
+
+.card:hover {
+    transform: rotateX(8deg) rotateY(-8deg) scale(1.06);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+}
+
+.card img {
+    width: 150px;
+    height: 150px;
+    transition: transform 0.4s ease;
+}
+
+.card:hover img {
+    transform: translateY(-12px) scale(1.05);
+}
+
+.card h2 {
+    margin: 15px 0 10px;
+    text-transform: capitalize;
+    transition: text-shadow 0.4s ease;
+}
+
+.card:hover h2 {
+    text-shadow: 0 0 14px rgba(255, 255, 255, 0.9);
+}
+
+.card p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+@keyframes aura {
+    0% { filter: blur(12px); }
+    50% { filter: blur(20px); }
+    100% { filter: blur(12px); }
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    opacity: 0.85;
+}
+
+.author {
+    margin-top: 6px;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
